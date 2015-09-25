@@ -14,6 +14,8 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Automatically load required grunt tasks
+  grunt.loadNpmTasks("grunt-rsync")
+
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin'
   });
@@ -223,7 +225,7 @@ module.exports = function (grunt) {
           '<%= config.dist %>/scripts/{,*/}*.js',
           '<%= config.dist %>/styles/{,*/}*.css',
           '<%= config.dist %>/images/{,*/}*.*',
-          '<%= config.dist %>/styles/fonts/{,*/}*.*',
+          '<%= config.dist %>/fonts/{,*/}*.*',
           '<%= config.dist %>/*.{ico,png}'
         ]
       }
@@ -336,7 +338,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'fonts/{,*/}*.*'
           ]
         }, {
           expand: true,
@@ -346,6 +348,29 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>'
         }]
       }
+    },
+
+    rsync: {
+        options: {
+            args: ["--verbose"],
+            exclude: [".git*","*.scss","node_modules"],
+            recursive: true
+        },
+        dist: {
+            options: {
+                src: "./app",
+                dest: "./dist"
+            }
+        },
+        
+        prod: {
+            options: {
+                src: "./dist/",
+                dest: "/home/deployer/apps/inflight.gedankenwerk-hosting.com/public_html",
+                host: "deployer@109.74.200.168",
+                delete: true // Careful this option could cause data loss, read the docs!
+            }
+        }
     },
 
     // Generates a custom Modernizr build that includes only the tests you
