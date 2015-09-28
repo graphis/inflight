@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $magenta-color: #e20074;
 $bggray: #ededed;
+$darktext: #383838;
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -44,8 +45,8 @@ html {
   font-family:"TeleGrotesk";
   font-style:normal;
   font-weight:600;
-  src:url("../fonts/telegrotesk-halbfett.eot?#iefix");
-  src:url("../fonts/telegrotesk-halbfett.eot?#iefix") format("eot"),url("../fonts/telegrotesk-halbfett.woff") format("woff"),url("../fonts/telegrotesk-halbfett.ttf") format("truetype"),url("/fonts/telegrotesk-halbfett.svg#telegrotesk-halbfett") format("svg")
+  src:url("/fonts/telegrotesk-halbfett.eot?#iefix");
+  src:url("/fonts/telegrotesk-halbfett.eot?#iefix") format("eot"),url("/fonts/telegrotesk-halbfett.woff") format("woff"),url("/fonts/telegrotesk-halbfett.ttf") format("truetype"),url("/fonts/telegrotesk-halbfett.svg#telegrotesk-halbfett") format("svg")
 }
 @font-face{
   font-family:"TeleGrotesk";
@@ -116,9 +117,11 @@ main > section {
 /* Custom page header */
 header {
   background-image: url(/images/img_keyvisual.jpg);
+  background-size: cover;
   height: 720px;
   position: relative;
   overflow: hidden;
+
 
 
   > h1 {
@@ -170,7 +173,7 @@ header {
         a {
           text-decoration: none;
           color: #4b4b4b;
-          font-family: Tele-GroteskNor;
+          font-family: TeleGrotesk;
           font-size: 21px;
           font-weight: 400;
           line-height: 54px;
@@ -181,6 +184,7 @@ header {
         }
         a:hover, a:active {
           color: $magenta-color;
+          text-decoration: none;
         }
       }
       li:last-child {
@@ -200,22 +204,24 @@ header {
       background: url(/images/teaser-bg.png) top right no-repeat;
       font-family:"TeleGroteskScreen";
       font-weight:800;
-      font-size: 47px;
-      line-height: 37px;
+      font-size: 44px;
+      line-height: 43px;
       padding-top: 52px;
       padding-left: 28px;
       padding-right: 85px;
       padding-bottom: 43px;
       margin: 0;
       margin-top: 20px;
+      max-width: 640px;
+      white-space: nowrap;
       //margin-bottom: -10px;
       color: #fff;
       
       span {
         font-family:"TeleGrotesk";
         font-weight: 400;
-        font-size: 37px;  
-        display: block
+        display: block;
+        white-space: normal;
       }
     }
       
@@ -235,12 +241,18 @@ main > section > h1 {
   line-height: 51px;
   margin-top: 49px;
 }
-main > section > h2 {
+main > section  h2 {
   font-weight: 700;
   font-size: 28px;
 }
 main > section > h1 + h2 {
   margin-top: 76px;
+}
+main > section > p + h2 {
+  margin-top: 75px;
+}
+main > section > .features + h2 {
+  margin-top: 87px;
 }
 section#overview {
   padding-top: 80px;
@@ -296,7 +308,7 @@ main > section {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    height: 250px;
+    height: 278px;
     margin-bottom: 60px;
     h3 {
       margin: 0;
@@ -319,11 +331,19 @@ main > section {
   .feature.light {
     background: #fff;
   }
+  .feature.dark {
+    background-color: #ededed;
+  }
   .feature.align-right {
     padding-left: 20px;
     img {
       float: right;
       margin-top: -20px;
+      //padding-left: 20px;
+      margin-left: 20px;
+    }
+    p {
+      //padding-right: 20px;
     }
   }
   .feature.align-left {
@@ -334,28 +354,228 @@ main > section {
       margin-right: 30px;
     }
   }
-  .values {
-    > div {
-      overflow: hidden;
+  .feature.legal {
+    img {
+      margin-top: 0;
+      margin-left: 15px;
     }
-    .monetization { float: left; width: 33%; }
-    .roaming-partners { display: inline-block; width: 33%; }
-    .customer-processing { float: right; width: 33%; }
+  }
+  .values {
+    text-align: justify;
+    width: 100%;
+    margin-top: 32px;
+    
+    > div {
+      margin: 0 auto;
+      max-width: 360px;
+      min-height: 673px;
+      width: auto;
+      display: inline-block;
+      vertical-align:top;
+      img {
+        display: inline-block;
+        vertical-align: top;
+      }
+      h4 {
+        color: $darktext;
+        font-family: TeleGrotesk;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 27px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+      ul {
+        //margin-bottom: 100%;
+        padding-left: 20px;
+        li {
+          list-style-type:square;
+          text-align: left;
+          //list-style-position: inside;
+          color: $darktext;
+          font-family: TeleGrotesk;
+          font-size: 23px;
+          font-weight: 400;
+          line-height: 32px;
+          margin-bottom: 32px;
+          // text-indent: -20px;
+          // padding-left: 20px;
+          padding-right: 20px;
+        }
+        
+        li:last-child {
+          margin-bottom: 0;
+        }
+        
+      }
+    }
+    
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      margin: 0;
+    }
+  }
+  .stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
   }
 }
 
 
-section#airline-benefits {
+section#airline-benefits, section#references {
   background: $bggray;
+}
+
+section#partnering-with-dt {
+  background: #fff;
+  #broadband-chart {
+    margin-top: 40px;
+    margin-bottom: 47px;
+  }
+  ol {
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+    column-count: 2;
+    column-gap: 20px;
+    list-style-type: none;
+    padding: 0;
+    li {
+      margin-bottom: 28px;
+      counter-increment: step-counter;
+      text-indent: -40px;
+      padding-left: 40px;
+    }
+    li::before {
+      content: counter(step-counter);
+      margin-right: 5px;
+      font-size: 80%;
+      //background-color: $magenta-color;
+      padding: 2px 8px;
+      background-image: url(/images/oval.svg);
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 27px;
+      margin-right: 14px;
+      color: white;
+      font-family: TeleGroteskScreen;
+      font-size: 21px;
+      font-weight: 800;
+      //line-height: 25px;
+    }
+  }
+  .europe {
+    padding-top: 60px;
+    h2 {
+      margin-top: 0;
+    }
+    p {
+      padding-right: 17px;
+    }
+    img {
+      float: left;
+      margin-right: 32px;
+    }
+  } 
+  padding-bottom: 50px;
+}
+
+
+section#references {
+  #airlines {
+    margin-top: 50px;
+    li {
+      display: inline-block;
+      margin-right: 24px;
+      margin-bottom: 30px;
+    }
+    li:nth-child(4n+4) {
+      margin-right: 0;
+    }
+  }
+}
+
+section#contact {
+  text-align: center;
+  padding-bottom: 60px;
+  h1 {
+    margin-bottom: 0;
+  }
+  h2 {
+    color: #383838;
+    margin-top: 0;
+    margin-bottom: 32px;
+    font-family: TeleGrotesk;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 51px;
+
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+  > a {
+    display: inline-block;
+    width: 165px;
+    height: 56px;
+    background-color: #e20074;
+    border: 1px solid #b3005c;
+    border-radius: 6px;
+    color: #fff;
+    line-height: 52px;
+  }
+}
+
+
+section#news {
+  article {
+    border-top: 1px solid #979797;
+    border-bottom: 1px solid #979797;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    h2 {
+      color: #383838;
+      font-family: TeleGrotesk;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 34px;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+  }
 }
 
 /* Custom page footer */
 footer {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-  border-top: 1px solid #979797;
-
+  
+  // border-top: 1px solid #979797;
+  > div {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 25px;  
+  }
+  #meta {
+    float: left;
+  }
+  #other-links {
+    float: left;
+    margin-left: 50px;
+  }
   #copyright {
     float: right;
     font-size: 17px;
