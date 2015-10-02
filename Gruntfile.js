@@ -14,7 +14,8 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Automatically load required grunt tasks
-  grunt.loadNpmTasks("grunt-rsync")
+  grunt.loadNpmTasks("grunt-rsync");
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin'
@@ -56,6 +57,10 @@ module.exports = function (grunt) {
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'postcss']
+      },
+      coffee: {
+        files: '<%= config.app %>/scripts/{,*/}*.coffee',
+        tasks: ['coffee']
       }
     },
 
@@ -102,6 +107,22 @@ module.exports = function (grunt) {
         options: {
           background: false,
           server: '<%= config.dist %>'
+        }
+      }
+    },
+    coffee: {
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/scripts',
+          src: '*.coffee',
+          dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
+      dist: {
+        files: {
+          '.tmp/scripts/main.js': '<%= config.app %>/scripts/*.coffee'
         }
       }
     },
@@ -362,16 +383,27 @@ module.exports = function (grunt) {
                 dest: "./dist"
             }
         },
+
+        stage: {
+          options: {
+              src: "./dist/",
+              dest: "/home/deployer/apps/inflight-stage.gedankenwerk-hosting.com/public_html",
+              host: "deployer@109.74.200.168",
+              delete: true
+          }
+        },
         
         prod: {
-            options: {
-                src: "./dist/",
-                dest: "/home/deployer/apps/inflight.gedankenwerk-hosting.com/public_html",
-                host: "deployer@109.74.200.168",
-                delete: true // Careful this option could cause data loss, read the docs!
-            }
+          options: {
+              src: "./dist/",
+              dest: "/home/deployer/apps/inflight.gedankenwerk-hosting.com/public_html",
+              host: "deployer@109.74.200.168",
+              delete: true 
+          }
         }
     },
+
+    
 
     // Generates a custom Modernizr build that includes only the tests you
     // reference in your app
@@ -417,6 +449,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'coffee:server',
       'wiredep',
       'concurrent:server',
       'postcss',
@@ -448,6 +481,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'coffee:dist',
     'useminPrepare',
     'concurrent:dist',
     'postcss',
