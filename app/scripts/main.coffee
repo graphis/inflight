@@ -26,31 +26,30 @@ $ ->
 
   $(window).on 'scroll', () ->
     
-    if $(window).scrollTop() > 720
-      $('body').addClass 'sticky-nav'
-      if $(window).scrollTop() <= 776
-        nav.css 'top', "#{$(window).scrollTop() - 776}px"
-        logo.css 'top', "#{$(window).scrollTop() - 776}px"
-      else
-        nav.css 'top', '0px'
-        logo.css 'top', "5px"
+    if $(window).scrollTop() > $('header').height()
+      if (Modernizr.mq('(min-width: 46.25em)'))
+        $('body').addClass 'sticky-nav'
+        
+        if $(window).scrollTop() <= 776
+          nav.css 'top', "#{$(window).scrollTop() - 776}px"
+          logo.css 'top', "#{$(window).scrollTop() - 776}px"
+        else
+          nav.css 'top', '0px'
+          logo.css 'top', "12px"
     else
       $('body').removeClass 'sticky-nav'
       
-      if $(window).height() < 720 && $(window).scrollTop() <= (720 - $(window).height())
-        wheight = if $(window).height() <= 525 then 525 else $(window).height()
-        nav.css 'bottom', 'auto'
-        nav.css 'top', "#{wheight - nav.height() - 30 + $(window).scrollTop()}px"
-        teaser.css 'bottom', 'auto'
-        teaser.css 'top', "#{wheight - teaser.height() - 115 + $(window).scrollTop()}px"
-
-      else
-        nav.css 'top', "auto"
-        teaser.css 'top', "auto"
-        nav.css 'top', 'auto'
-        nav.css 'bottom', '30px'
-        logo.css 'top', "50px"
+      
+      nav.css 'top', "auto"
+      teaser.css 'top', "auto"
+      nav.css 'top', 'auto'
+      nav.css 'bottom', '30px'
+      logo.css 'top', "50px"
+      logo.removeAttr 'style'
+      if (Modernizr.mq('(min-width: 46.25em)'))
         teaser.css 'bottom', "115px"
+      else
+        teaser.css 'bottom', "0px"
     updateSecondaryNavigation()
 
   $(window).scroll() 
@@ -71,6 +70,26 @@ $ ->
       , 400
 
   
+
+  #mobile shenenigans
+  $('#mobile-menu-toggle').click (e) ->
+    e.preventDefault()
+    $(@).toggleClass('expanded').next().slideToggle('fast')
+
+  $('#mobile-menu ul li a').on 'click', (e) ->
+    e.preventDefault()
+    $('#mobile-menu-toggle').toggleClass('expanded').next().slideToggle('fast')
+    target = $(this.hash)
+    offset = 80
+    if this.hash == '#overview'
+      offset = -50
+
+    $('body,html').animate
+      'scrollTop': target.offset().top - nav.height() + offset
+      , 400
+
+
+
       
 
 
