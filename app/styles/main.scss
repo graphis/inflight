@@ -436,11 +436,10 @@ main > section > div {
 
 main > section > div > h1 {
   color: $magenta-color;
-  
-  font-size: 40px;
+  font-size: 34px;
   font-family:"TeleGroteskScreen";
   font-weight:800;
-  line-height: 40px;
+  line-height: 34px;
   margin-top: 49px;
   letter-spacing: 0.9px;
 }
@@ -699,6 +698,9 @@ section#airline-benefits, section#references {
 }
 
 section#partnering-with-dt {
+  h1 > br {
+    display: none;
+  }
   background: #fff;
   #broadband-chart {
     width: 100%;
@@ -766,11 +768,35 @@ section#references {
       margin-bottom: 30px;
     }
 
-    li:nth-child(4n+4), li:nth-child(3n+3), li:nth-child(2n+2), li {
-      margin-right: 0;
-    }
+    // li:nth-child(4n+4), li:nth-child(3n+3), li:nth-child(2n+2), li {
+    //   margin-right: 0;
+    // }
   }
 }
+
+section#references {
+    #airlines {
+      margin-top: 50px;
+      li {
+
+        display: inline-block;
+        margin-right: 2.5%;
+        margin-bottom: 20px;
+        width: 45%;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      li:nth-child(4n+4), li:nth-child(1n+1) {
+        margin-right: 12px;
+      }
+      li:nth-child(2n+2) {
+        margin-right: 0;
+      }
+    }
+  }
 
 section#contact {
   text-align: center;
@@ -928,29 +954,7 @@ footer {
       }
     }
   }
-  section#references {
-    #airlines {
-      margin-top: 50px;
-      li {
-
-        display: inline-block;
-        margin-right: 2.5%;
-        margin-bottom: 30px;
-        width: 45%;
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-
-      li:nth-child(4n+4), li:nth-child(1n+1) {
-        margin-right: 24px;
-      }
-      li:nth-child(2n+2) {
-        margin-right: 0;
-      }
-    }
-  }
+  
 }
 
 /**
@@ -993,6 +997,15 @@ footer {
   main > section {
 
   }
+  main > section > div > h1 {
+    color: $magenta-color;
+    font-size: 40px;
+    font-family:"TeleGroteskScreen";
+    font-weight:800;
+    line-height: 40px;
+    margin-top: 49px;
+    letter-spacing: 0.9px;
+  }
   section#overview {
     ul {
 
@@ -1003,6 +1016,11 @@ footer {
         background-repeat: no-repeat;
         background-size: 63px 58px;
       }
+    }
+  }
+  section#partnering-with-dt {
+    h1 > br {
+      display: inline;
     }
   }
 }
