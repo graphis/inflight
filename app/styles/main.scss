@@ -1287,6 +1287,9 @@ footer {
           height: auto;
         }
       }
+      li:nth-child(1n+1) {
+        margin-right: 24px;
+      }
       li:nth-child(2n+2) {
         margin-right: 24px;
       }
@@ -1477,6 +1480,12 @@ footer {
       display: inline-block;
       margin-right: 24px;
       margin-bottom: 30px;
+    }
+    li:nth-child(1n+1) {
+      margin-right: 24px;
+    }
+    li:nth-child(2n+2) {
+      margin-right: 24px;
     }
     li:nth-child(3n+3) {
       margin-right: 24px;
